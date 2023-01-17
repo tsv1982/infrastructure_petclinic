@@ -9,13 +9,12 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/petclinic-docker-jenkins.git'
+                git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/petclinic.git'
             }
         }
         stage('build'){
             steps {  
                 sh "./mvnw package" 
-//                sh "mvn -B -Dspring-boot.run.profiles=mysql -DskipTests clean package"
            }
         }
           stage('docker build'){
@@ -30,16 +29,13 @@ pipeline {
                  withCredentials([string(credentialsId: 'docker_pas', variable: 'dockerHab_pas')]) {
                      sh "docker login -u tsv1982 -p ${dockerHab_pas}"
                  }
-                // sh 'docker tag petclinic:latest tsv1982/petclinic:${DOCKER_VERSION_TAG}'
                  sh 'docker push tsv1982/petclinic_01:${DOCKER_VERSION_TAG}'
                  sh 'docker push tsv1982/petclinic_01:latest'
-                  
             }
         }
         
     }
     
-   
 }
 
 def getVersion(){
