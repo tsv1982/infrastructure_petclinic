@@ -31,7 +31,13 @@ pipeline {
                  sh 'docker push tsv1982/petclinic_01:latest'
             }
         }
-        
+//        stage('Terraform init'){
+//            steps{
+//                sh 'terraform init'
+//                sh 'terraform apply --auto-approve'
+//            }
+//        }
+                
     }
     
 }
