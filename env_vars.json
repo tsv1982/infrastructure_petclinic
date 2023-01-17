@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "MYSQL_USER",
+    "value" : "petclinic"
+  },
+  {
+    "name" : "MYSQL_PASSWORD",
+    "value" : "petclinic"
+  },
+  {
+    "name" : "MYSQL_URL",
+    "value" : "jdbc:mysql://10-0-1-238/petclinic"
+  }
+]
