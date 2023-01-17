@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Hello') {
+        stage('git') {
             steps {
                 git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/petclinic.git'
             }
@@ -31,16 +31,7 @@ pipeline {
                  sh 'docker push tsv1982/petclinic_01:latest'
             }
         }
-        stage('Terraform init'){
-            steps{
-                withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
-                'AWS_SECRET_ACCESS_KEY')]) {  
-                  sh 'terraform init'
-                  sh 'terraform apply --auto-approve'
-                }
-            }
-        }
-                
+               
     }
     
 }

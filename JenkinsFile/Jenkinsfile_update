@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Hello') {
+        stage('git') {
             steps {
                 git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/petclinic.git'
             }
