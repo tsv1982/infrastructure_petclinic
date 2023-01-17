@@ -3,7 +3,6 @@ pipeline {
     
     environment {
         DOCKER_VERSION_TAG = getVersion()
-
     }
 
     stages {
