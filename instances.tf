@@ -64,10 +64,10 @@ resource "aws_instance" "bastion_instance" {
 
 resource "null_resource" "configuration_of_instances" {
   provisioner "local-exec" {
-    command = "echo '[mysql]\nserver1 ansible_host=${aws_instance.mysql_instance.private_ip}\n[mysql:vars]\nansible_ssh_user=ubuntu\nansible_ssh_private_key_file=~/ansible/${var.generated_key_name}.pem' > hosts.txt"
+    command = "echo '[mysql]\nserver1 ansible_host=${aws_instance.mysql_instance.private_ip}\n[mysql:vars]\nansible_ssh_user=ubuntu\nansible_ssh_private_key_file=./${var.generated_key_name}.pem' > hosts.txt"
   }
   provisioner "file" {
-    source      = "/home/ubuntu/ansible"
+    source      = "./"
     destination = "/home/ubuntu/"
     connection {
       type        = "ssh"
@@ -77,7 +77,7 @@ resource "null_resource" "configuration_of_instances" {
     }
  } 
   provisioner "remote-exec" {
-    inline = ["chmod 400 ./ansible/${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./ansible/p_book.yml -i ./ansible/hosts.txt"]
+    inline = ["chmod 400 ./${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./p_book.yml -i ./hosts.txt"]
     connection {
       type        = "ssh"
       user        = "ubuntu"
