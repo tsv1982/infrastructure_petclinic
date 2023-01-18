@@ -7,11 +7,10 @@ pipeline {
 
     stages {
         stage('build') {
-                    steps {
-                            build job: "petclinic_build", wait: true
-                }
+            steps {
+              build job: "petclinic_build", wait: true
+            }
         }
-
        
         stage('terraform_crete_infra'){
             steps {
@@ -22,7 +21,6 @@ pipeline {
              }
            }
         }
-        
     }
    
 }
