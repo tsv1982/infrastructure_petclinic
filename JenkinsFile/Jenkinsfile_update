@@ -12,6 +12,13 @@ pipeline {
                 git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/petclinic.git'
             }
         }
+
+         stage('Build A') {
+                    steps {
+                            build job: "petclinic_build", wait: true
+                }
+        }
+               
         stage('build'){
             steps {  
                 sh "./mvnw package" 
