@@ -6,13 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('git') {
-            steps {
-                git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/infrastructure_petclinic.git'
-            }
-        }
-
-       
         stage('terraform_delete'){
             steps {
               withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
@@ -22,7 +15,6 @@ pipeline {
              }
            }
         }
-        
     }
    
 }
