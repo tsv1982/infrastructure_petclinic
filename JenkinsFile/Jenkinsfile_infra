@@ -6,10 +6,10 @@ pipeline {
     }
 
     stages {
-        stage('git') {
-            steps {
-                git branch: 'main', credentialsId: 'git_ssh', url: 'git@github.com:tsv1982/infrastructure_petclinic.git'
-            }
+        stage('build') {
+                    steps {
+                            build job: "petclinic_build", wait: true
+                }
         }
 
        
