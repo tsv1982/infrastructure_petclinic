@@ -1,6 +1,6 @@
 #!/bin/bash
 #sudo apt install jq -y
-sleep 30
+sleep 90
 
 CLASTER_NAME="petclinic_ecs_cluster"
 SERVICE_NAME="petclinic_service"
