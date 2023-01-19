@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install jq -y
+#sudo apt install jq -y
 sleep 5
 
 CLASTER_NAME="petclinic_ecs_cluster"
