@@ -21,6 +21,15 @@ pipeline {
              }
            }
         }
+
+        stage('get_ecs_public_ip'){
+            steps {
+              withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
+              'AWS_SECRET_ACCESS_KEY')]) {  
+                   sh 'bash getip.sh'
+              }
+           }
+        }
     }
    
 }
