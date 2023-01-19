@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep 60
+sleep 90
 
 CLASTER_NAME="petclinic_ecs_cluster"
 SERVICE_NAME="petclinic_service"
