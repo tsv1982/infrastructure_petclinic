@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('job_run_build') {
              steps {
-              build job: "petclinic_build", wait: true
+ //             build job: "petclinic_build", wait: true
                 }
         }
   
