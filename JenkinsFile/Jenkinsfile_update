@@ -20,6 +20,12 @@ pipeline {
              }
            }
         }
+
+        stage('get_ecs_public_ip'){
+            steps {
+             sh 'bash getip.sh'
+           }
+        }
     }
    
 }
