@@ -9,6 +9,7 @@ pipeline {
         stage('job_run_build') {
              steps {
  //             build job: "petclinic_build", wait: true
+               sh 'echo dkjfh'
                 }
         }
   
