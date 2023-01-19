@@ -17,8 +17,7 @@ pipeline {
             steps {
               withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
               'AWS_SECRET_ACCESS_KEY')]) {
-//                   sh 'aws ecs update-service --cluster petclinic_ecs_cluster --service petclinic_service --task-definition petclinic_task_definition --force-new-deployment'
-                    sh 'echo dkjfh'
+                  sh 'aws ecs update-service --cluster petclinic_ecs_cluster --service petclinic_service --task-definition petclinic_task_definition --force-new-deployment'
               }
            }
         }
