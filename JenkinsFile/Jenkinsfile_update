@@ -8,9 +8,8 @@ pipeline {
     stages {
         stage('job_run_build') {
              steps {
- //             build job: "petclinic_build", wait: true
-               sh 'echo dkjfh'
-                }
+               build job: "petclinic_build", wait: true
+           }
         }
   
         stage('ecs_update'){
