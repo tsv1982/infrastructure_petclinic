@@ -6,13 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('build') {
+        stage('job_run_build') {
             steps {
               build job: "petclinic_build", wait: true
             }
         }
        
-        stage('terraform_crete_infra'){
+        stage('terraform_create_infra'){
             steps {
               withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
               'AWS_SECRET_ACCESS_KEY')]) {
