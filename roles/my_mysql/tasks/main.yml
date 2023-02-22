@@ -77,7 +77,8 @@
        password: "{{ mysql_tsv_password }}"       
        check_implicit_admin: yes
        login_user: "{{ mysql_root_user }}"
-       login_password: "{{ mysql_root_password }}"
+#       login_password: "{{ mysql_root_password }}"
+       login_password: "{{ mysql_tsv_user }}"
        priv: "{{db_name}}.*:ALL"
 #       priv: "{{db_name}}.*:SELECT,UPDATE,DELETE,INSERT,CREATE,DROP,INDEX,ALTER,LOCK TABLES,EXECUTE,CREATE TEMPORARY TABLES,EXECUTE,TRIGGER,CREATE VIEW,SHOW VIEW,EVENT,REQUIRESSL"
        state: present
