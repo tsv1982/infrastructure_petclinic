@@ -68,9 +68,9 @@ resource "aws_route_table_association" "instance" {
   route_table_id = aws_route_table.instance.id
 }
 
-resource "aws_eip" "eip_nat_gateway" {  
-  vpc = true
-}
+#resource "aws_eip" "eip_nat_gateway" {  
+#  vpc = true
+#}
 
 resource "aws_eip" "eip_bastion" {
   instance = aws_instance.bastion_instance.id
@@ -78,7 +78,8 @@ resource "aws_eip" "eip_bastion" {
 }
 
 resource "aws_nat_gateway" "nat_gateway" {
-  allocation_id = aws_eip.eip_nat_gateway.id   
+  #allocation_id = aws_eip.eip_nat_gateway.id
+  allocation_id =  aws_internet_gateway.id  
   subnet_id     = aws_subnet.public_subnet.id
   tags = {
     Name        = "${var.app_name}-nat_gateway"
