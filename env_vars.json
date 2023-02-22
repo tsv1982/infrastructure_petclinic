@@ -10,5 +10,9 @@
   {
     "name" : "MYSQL_URL",
     "value" : "jdbc:mysql://10-0-1-238/petclinic"
+  },
+  {
+   "name" : "spring.profiles.active",
+   "value" : "mysql"  
   }
 ]
