@@ -4,7 +4,7 @@ resource "tls_private_key" "ssh" {
 }
 
 resource "aws_key_pair" "ssh" {
-  key_name   = var.key_name
+  key_name   = var.generated_key_name
   #key_name   = var.key_name
   public_key = tls_private_key.ssh.public_key_openssh
 
@@ -30,7 +30,7 @@ resource "aws_instance" "mysql_instance" {
   key_name                = aws_key_pair.ssh.key_name
   private_ip              = var.db_private_ips
   disable_api_termination = false
- # ebs_optimized           = false  ????
+  ebs_optimized           = false  ????
   
   root_block_device {
     volume_size = "8"
@@ -49,7 +49,7 @@ resource "aws_instance" "bastion_instance" {
   security_groups         = [aws_security_group.security_group.id]
   key_name                = aws_key_pair.ssh.key_name
   disable_api_termination = false
-#  ebs_optimized           = false   ???
+  ebs_optimized           = false   ???
  
   root_block_device {
     volume_size = "8"
