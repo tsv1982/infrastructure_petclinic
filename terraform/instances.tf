@@ -68,7 +68,7 @@ resource "null_resource" "configuration_of_instances" {
     command = "echo '[mysql]\nserver1 ansible_host=${aws_instance.mysql_instance.private_ip}\n[mysql:vars]\nansible_ssh_user=ubuntu\nansible_ssh_private_key_file=./${var.generated_key_name}.pem' > hosts.txt"
   }
   provisioner "file" {
-    source      = "./"
+    source      = "../absible"
     destination = "/home/ubuntu/"
     connection {
       type        = "ssh"
