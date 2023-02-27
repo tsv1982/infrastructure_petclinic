@@ -78,7 +78,7 @@ resource "null_resource" "configuration_of_instances" {
     }
  } 
   provisioner "remote-exec" {
-    inline = ["cd ansible", "chmod 400 ./${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./p_book.yml -i ./hosts.txt"]
+    inline = ["cd ansible","chmod 400 ./${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./p_book.yml -i ./hosts.txt"]
     connection {
       type        = "ssh"
       user        = "ubuntu"
