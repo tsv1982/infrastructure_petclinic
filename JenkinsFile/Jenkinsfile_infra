@@ -17,7 +17,7 @@ pipeline {
               withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
               'AWS_SECRET_ACCESS_KEY')]) {
                   sh 'cd terraform'
-                  sh 'terraform init --reconfigure'
+                  sh 'terraform init --lock=false'
                   sh 'terraform apply --auto-approve'
              }
            }
