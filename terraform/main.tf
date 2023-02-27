@@ -14,11 +14,11 @@ resource "aws_key_pair" "ssh" {
   }
 
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.ssh.private_key_pem}' > ~/infrastructure_petclinic/ansible/${var.generated_key_name}.pem"
+    command = "echo '${tls_private_key.ssh.private_key_pem}' > ../ansible/${var.generated_key_name}.pem"
   }
 
   provisioner "local-exec" {
-    command = "chmod 400 ~/infrastructure_petclinic/ansible/${var.generated_key_name}.pem"
+    command = "chmod 400 ../ansible/${var.generated_key_name}.pem"
   }
 }
 
@@ -65,25 +65,25 @@ resource "aws_instance" "bastion_instance" {
 
 resource "null_resource" "configuration_of_instances" {
   provisioner "local-exec" {
-    command = "echo '[mysql]\nserver1 ansible_host=${aws_instance.mysql_instance.private_ip}\n[mysql:vars]\nansible_ssh_user=ubuntu\nansible_ssh_private_key_file=./${var.generated_key_name}.pem' > ~/infrastructure_petclinic/ansible/hosts.txt"
+    command = "echo '[mysql]\nserver1 ansible_host=${aws_instance.mysql_instance.private_ip}\n[mysql:vars]\nansible_ssh_user=ubuntu\nansible_ssh_private_key_file=./${var.generated_key_name}.pem' > ../ansible/hosts.txt"
   }
   provisioner "file" {
-    source      = "~/infrastructure_petclinic/ansible/"
+    source      = "../ansible/"
     destination = "/home/ubuntu/"
     connection {
       type        = "ssh"
       user        = "ubuntu"
       host        = aws_eip.eip_bastion.public_ip
-      private_key = file("~/infrastructure_petclinic/ansible/${var.generated_key_name}.pem")
+      private_key = file("../ansible/${var.generated_key_name}.pem")
     }
  } 
   provisioner "remote-exec" {
-    inline = ["cd ansible","chmod 400 ./${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./p_book.yml -i ./hosts.txt"]
+    inline = ["chmod 400 ./${var.generated_key_name}.pem", "sudo apt update -y", "sudo apt install ansible -y", "ansible-galaxy collection install community.mysql", "export ANSIBLE_HOST_KEY_CHECKING=False", "ansible-playbook ./p_book.yml -i ./hosts.txt"]
     connection {
       type        = "ssh"
       user        = "ubuntu"
       host        = aws_eip.eip_bastion.public_ip
-      private_key = file("~/infrastructure_petclinic/ansible/${var.generated_key_name}.pem")
+      private_key = file("../ansible/${var.generated_key_name}.pem")
     }
   }
     depends_on = [aws_instance.bastion_instance, aws_instance.mysql_instance, ]
