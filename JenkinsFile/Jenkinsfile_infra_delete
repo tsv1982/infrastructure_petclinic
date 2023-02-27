@@ -11,7 +11,7 @@ pipeline {
               withCredentials([string(credentialsId: 'Access_key_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'Secret_access_key', variable: 
               'AWS_SECRET_ACCESS_KEY')]) {
                   sh 'rm /var/lib/jenkins/workspace/petclinic_infrastructure/ansible/terraform-key-pair1.pem'
-                  sh 'terraform init --lock=false'
+                  sh 'terraform init'
                   sh 'terraform destroy --auto-approve'
              }
            }
