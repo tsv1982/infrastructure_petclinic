@@ -5,10 +5,10 @@
   + [pipeline for creating infrastructure](https://github.com/tsv1982/infrastructure_petclinic/blob/main/JenkinsFile/Jenkinsfile_infra "Jenkinsfile_infra") (tools Terrafom and Ansible)
   + [pipeline for updating ECS](https://github.com/tsv1982/infrastructure_petclinic/blob/main/JenkinsFile/Jenkinsfile_update "Jenkinsfile_update") (tool AWS CLI)
 # Terraform
-+ using Terraform we create the infrastructure of the project
++ [using Terraform we create the infrastructure of the project](https://github.com/tsv1982/infrastructure_petclinic/tree/main/terraform)
 ![image](https://github.com/tsv1982/infrastructure_petclinic/blob/main/imges/terraform.png "diagram of terraform")
 # Ansible
-+ configure Mysql instance using Ansible
++ [configure Mysql instance using Ansible](https://github.com/tsv1982/infrastructure_petclinic/tree/main/ansible)
 ![image](https://github.com/tsv1982/infrastructure_petclinic/blob/main/imges/ansible.png "diagram of terraform")
 ---
 # improve the project
